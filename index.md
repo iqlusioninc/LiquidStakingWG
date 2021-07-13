@@ -12,7 +12,7 @@ The purposed of the Liquid Staking Working Group is a to design and implement th
 
 {: .fs-6 .fw-300 }
 
-[Read Notes of previous Meetings](https://todo){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://todo){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Read Notes of previous Meetings](https://liquidstaking.finance/meeting_notes){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/iqlusioninc/LiquidStakingWG/tree/main/meeting_notes){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
