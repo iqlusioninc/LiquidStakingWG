@@ -1,0 +1,13 @@
+<div class="meeting-note-overlay">
+  <div class="meeting-note">
+    <div class="minimize"></div>
+    <div class="header">
+      <div class="avatar" style="background-image: url({{page.image | relative_url}})"></div>
+      <div class="header-content">
+        <p class="title">{{ page.title }}</p>
+        <p class="date">Created {{ page.date | date_to_long_string }}</p>
+      </div>
+    </div>
+    <div class="content">{{ page.content }}</div>
+  </div>
+</div>

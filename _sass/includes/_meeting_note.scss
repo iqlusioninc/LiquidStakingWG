@@ -1,0 +1,165 @@
+.meeting-notes {
+  display: grid;
+  row-gap: 32px;
+  column-gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
+
+  @include media-query($laptop) {
+    row-gap: 24px;
+    column-gap: 24px;
+  }
+
+  @include media-query($mobile) {
+    row-gap: 20px;
+    column-gap: 0;
+    grid-template-columns: 1fr;
+  }
+}
+
+.meeting-note-overlay {
+  overflow-y: hidden;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+    background: linear-gradient(
+      0,
+      rgba(24, 24, 23, 1) 0%,
+      rgba(24, 24, 23, 0) 100%
+    );
+  }
+
+  &.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    cursor: default;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    border-radius: 20px;
+
+    &:before {
+      display: none;
+    }
+
+    .meeting-note {
+      box-shadow: 0px 16px 64px rgba(0, 0, 0, 0.25);
+      max-width: 600px;
+      width: 100%;
+      margin: 15vh auto;
+      overflow-x: unset;
+      min-height: calc(100% - 30vh);
+
+      .minimize {
+        display: block;
+      }
+    }
+  }
+
+  @include media-query($tablet) {
+    &.active {
+      border-radius: 0;
+
+      .meeting-note {
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+        height: 100%;
+
+        .minimize {
+          top: 12px;
+          right: 16px;
+        }
+      }
+    }
+  }
+
+  @include media-query($mobile) {
+    &.active > .meeting-note {
+      padding: 32px 20px;
+      .header {
+        flex-direction: column;
+
+        .avatar {
+          margin-right: 0;
+          margin-bottom: 32px;
+        }
+      }
+    }
+  }
+}
+
+.meeting-note {
+  display: flex;
+  flex-direction: column;
+  background-color: #181817;
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow-x: hidden;
+
+  .minimize {
+    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -24px;
+    right: -24px;
+    cursor: pointer;
+    background-image: url($baseurl + "/assets/svg/minimize.svg");
+  }
+
+  .header {
+    display: flex;
+    margin-bottom: 32px;
+
+    .avatar {
+      min-width: 62px;
+      min-height: 62px;
+      width: 62px;
+      height: 62px;
+      border-radius: 62px;
+      background-size: cover;
+      margin-right: 32px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      .date {
+        font-size: 16px;
+        line-height: 26px;
+        opacity: 0.8;
+        margin: 0;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    @include post-styles;
+  }
+}

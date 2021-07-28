@@ -1,0 +1,33 @@
+.other-posts {
+  width: 100%;
+  margin-top: 60px;
+
+  &--title {
+    font-size: 28px;
+    line-height: 34px;
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+
+  &--content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 816px;
+
+    .post-preview {
+      flex: 1;
+
+      &:first-child {
+        margin-right: 32px;
+
+        &:last-child {
+          margin-right: 0;
+
+          @media screen and (min-width: $mobile) {
+            @include post-preview-horizontal;
+          }
+        }
+      }
+    }
+  }
+}

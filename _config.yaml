@@ -1,9 +1,31 @@
-title: "Iqlusion Liquid Staking Working Group"
-remote_theme: pmarsceill/just-the-docs
+domain: liquidstaking.finance
+url: https://liquidstaking.finance/
 search_enabled: true
-aux_links:
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <i class="fa fa-telegram" style="font-size:26px; margin-right:0.5em" aria-hidden="true"></i> <b>Join us on Telegram</b>:
-    - "https://t.me/joinchat/79l8Cmj5PAFlM2Uy"
-  <i class="fa fa-github" style="font-size:30px; margin-right:0.5em"></i> <b>Edit on GitHub</b>:
-    - "https://github.com/iqlusioninc/ux.interchain.io"
-  
+title: "Iqlusion Liquid Staking Working Group"
+plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/blog/page-:num/"
+collections:
+  meeting_notes:
+    output: true
+    permalink: /meeting-notes/:title
+defaults:
+  - scope:
+      path: ""
+      type: "meeting_notes"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      with_other_posts: true
+      layout: "post"
+
+exclude:
+  - readme.md
+  - vendor/bundle
+  - home
+  - LICENSE.txt
+  - README.md
