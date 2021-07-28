@@ -1,0 +1,49 @@
+{% assign showRelatedPosts = 2 %}
+
+{% capture posts %}
+  {% for post in site.posts %}
+    {% if post.url != page.url %}
+      {% assign matchingTags = "" | split: "," %}
+
+      {% for tag in post.tags %}
+        {% assign currentPostTag = tag | downcase %}
+        {% assign tagsPage = page.tags | downcase %}
+        {% if tagsPage contains currentPostTag %}
+          {% assign matchingTags = matchingTags | push: currentPostTag %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign tagsTotal = matchingTags.size %}
+        {% if tagsTotal < 10 %}
+          {% assign tagsTotal = tagsTotal | prepend: "0" %}
+        {% else %}
+          {% assign tagsTotal = tagsTotal  %}
+        {% endif %}
+
+      {% if matchingTags.size > 0 %}
+        |
+        <!-- {{ tagsTotal }} -->
+        <!-- {% increment relatedPostsLength %} -->
+        {% include post-preview.html %}
+      {% endif %}
+
+
+    {% else %}
+      {% continue %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+
+{% assign relatedPosts = posts | split: '|' | sort | reverse %}
+
+{% if relatedPostsLength  %}
+<div class="other-posts"></div>
+  <h2 class="other-posts--title">Other articles: </h4>
+  <div class="other-posts--content">
+    {% for i in (0..showRelatedPosts) %}
+      {{ relatedPosts[i] }}
+    {% endfor %}
+  </div>
+{% endif %}
+

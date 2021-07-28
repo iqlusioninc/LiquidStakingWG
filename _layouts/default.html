@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en" }}">
+
+{% include head.html %}
+
+<body>
+  <script>
+    window.searchStore = {
+      {% if site.posts %}
+      {% for post in site.posts %}
+
+    "{{forloop.index}}": {
+      "title": "{{ post.title | xml_escape }}",
+      "category": "Blog",
+      "content": {{ post.content | strip_html | strip_newlines | normalize_whitespace | jsonify }},
+      "url": "{{ post.url | xml_escape | relative_url }}"
+    }
+    {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    {% endif %}
+    {% if site.meeting_notes %}
+    ,
+    {% for post in site.meeting_notes %}
+    "1{{forloop.index}}": {
+      "title": "{{ post.title | xml_escape }}",
+      "category": "Meeting notes",
+      "content": {{ post.content | strip_html | strip_newlines | normalize_whitespace | jsonify }},
+      "url": "{{ post.url | xml_escape | relative_url }}"
+    }
+    {% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+    {% endif %}
+    };
+  </script>
+
+  {% include header.html %}
+  <div id="search-results"></div>
+  <main class="main-content" aria-label="Content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+</body>
+
+</html>

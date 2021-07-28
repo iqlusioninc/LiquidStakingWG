@@ -1,0 +1,18 @@
+<a class="post-preview" href="{{ post.url | relative_url }}">
+
+  {% if post.image %}
+  <div class="image" style="background-image: url({{post.image | relative_url}})"></div>
+    {% endif %}
+
+    <div class="content {% unless post.image %}without-image{% endunless %}">
+      <div>
+        <p class="category">{{ post.category | default: "Post" }}</p>
+        <h1 class="title">{{ post.title | strip_html | truncatewords:10 }}</h1>
+        <p class="lead">{{ post.content | strip_html | truncatewords:20 }}</p>
+      </div>
+
+
+      <p class="date">{{ post.date | date_to_long_string }}</p>
+
+    </div>
+  </a>

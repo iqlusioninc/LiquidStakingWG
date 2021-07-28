@@ -1,0 +1,24 @@
+<header id="header">
+  <span class="label site-name">{{ site.title }}</span>
+
+  <div class="navigation">
+    <div class="search-input-wrapper">
+      <div class="search-icon"></div>
+      <input type="text" placeholder="Search" />
+      <div class="close-icon"></div>
+    </div>
+    <div class="navigation-links">
+      {% for nav_item in site.data.nav %}
+      <a class="label" href="{{ nav_item.url | relative_url }}"
+        >{{ nav_item.title | escape }}</a
+      >
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="burger">
+    <div class="line line-1"></div>
+    <div class="line line-2"></div>
+    <div class="line line-3"></div>
+  </div>
+</header>

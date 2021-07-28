@@ -1,0 +1,15 @@
+---
+layout: page
+subtitle: Meeting notes
+title: What was
+lead: Meeting notes to come
+---
+
+
+{% if site.meeting_notes.size > 0 %}
+  <div class="meeting-notes">
+    {% for page in site.meeting_notes %}
+      {% include meeting-note.html %}
+    {% endfor %}
+  </div>
+{% endif %}
